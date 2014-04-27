@@ -38,6 +38,11 @@ if [[ ! -f $backup_file ]]; then
 fi
 
 #
+# FIXME: Check if the domain exists in the tarball before trying to restore.
+# FIXME: Figure out which domain is the primary domain and restore that first.
+#
+
+#
 # Restore a domain and ignore powerdns and mail
 #
 ${vmin_base}/restore-domain.pl --domain ${domain} --source ${backup_file} \
