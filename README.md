@@ -1,7 +1,7 @@
 # Webmin Migration Scripts
 
 Various scripts for migrating shared hosting accounts backed up with
-[Webmin](https://github.com/webmin/webmin).
+[Webmin](https://github.com/webmin/webmin)'s virtual-servers plugin (virtualmin).
 
 ### Configuration files
 
