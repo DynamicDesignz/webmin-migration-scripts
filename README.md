@@ -17,6 +17,11 @@ various scripts.
 5. Open a Pull Request
 6. Enjoy a refreshing Dr Pepper and wait for the pull request to be merged
 
+## Authors
+
+ * [Jacques Marneweck](https://github.com/jacques/)
+ * Václav Strachoň
+
 ## License
 
 ```
