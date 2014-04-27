@@ -20,7 +20,7 @@ various scripts.
 ## Authors
 
  * [Jacques Marneweck](https://github.com/jacques/)
- * Václav Strachoň
+ * [Václav Strachoň](https://github.com/wencaaa/)
 
 ## License
 
