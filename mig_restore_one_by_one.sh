@@ -20,6 +20,8 @@ set -x
 export LANG=C
 export PATH=/opt/local/gnu/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin
 
+source ./lib/common.inc
+
 vmin_base=/opt/webmin/virtual-server
 
 if [ -z $2 ]; then
@@ -55,18 +57,19 @@ ${vmin_base}/restore-domain.pl --domain ${domain} --source ${backup_file} \
 # Handles the cases where the virtualmin-dav and virtualmin-svn plugins are
 # enabled on a domain.
 #
-vmin list-domains --domain ${domain} --multiline | grep dav
-if [[ $? -eq 0 ]]; then
-  have_dav=1
-else
-  have_dav=0
-fi
+set +o errexit
 
-vmin list-domains --domain ${domain} --multiline | grep svn
-if [[ $? -eq 0 ]]; then
-  have_svn=1
-else
-  have_svn=0
+has_feature "virtualmin-dav" "${domain}"
+have_dav=$?
+
+has_feature "virtualmin-svn" "${domain}"
+have_svn=$?
+
+has_feature "ssl" "${domain}"
+have_ssl=$?
+
+if [[ $have_ssl -eq 1 ]]; then
+  vmin disable-feature --domain ${domain} --ssl
 fi
 
 if [[ $have_dav -eq 1 ]]; then
@@ -88,4 +91,8 @@ fi
 
 if [[ $have_svn -eq 1 ]]; then
   vmin enable-feature --domain ${domain} --virtualmin-svn
+fi
+
+if [[ $have_ssl -eq 1 ]]; then
+  vmin enable-feature --domain ${domain} --ssl
 fi
