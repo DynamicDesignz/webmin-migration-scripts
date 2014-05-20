@@ -1,5 +1,5 @@
 #
-# Common functions for use with scripts interactiving with the virtualmin wrappers
+# Common functions for use with scripts interacting with the virtualmin wrappers
 #
 # Copyright (c) 2014 Jacques Marneweck.  All rights reserved.
 #
