@@ -31,7 +31,7 @@ dir=$(vmin list-domains --domain ${domain} --multiline | grep "HTML directory:" 
 echo "==> Preparing to move ${domain} over to (mt)."
 
 echo "Domain to move: ${domain}"
-echo "Source directory: ${dir}"
+echo "Target directory: ${dir}"
 echo "Grid Server: ${gridserver}"
 
 cd ${dir}
