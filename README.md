@@ -2,6 +2,7 @@
 
 Various scripts for migrating shared hosting accounts backed up with
 [Webmin](https://github.com/webmin/webmin)'s virtual-servers plugin (virtualmin).
+Also there is a script for migrating domains over from Media Temple's Grid Servers.
 
 ### Configuration files
 
