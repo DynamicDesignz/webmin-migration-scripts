@@ -1,0 +1,38 @@
+#!/opt/local/bin/bash
+#
+# Copyright (c) 2014 Jacques Marneweck.  All rights reserved.
+#
+
+set -o errexit
+set -o pipefail
+export PS4='[\D{%FT%TZ}] ${BASH_SOURCE}:${LINENO}: ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+set -o xtrace
+
+set -x
+
+export LANG=C
+export PATH=/opt/local/gnu/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin
+
+domain=$1
+username=$2
+gridserver=$3
+
+if [[ -z $3 ]]; then
+  /bin/cat <<EOM
+  Usage: ${0} [domain] [username] [mt server]"
+
+  e.g. domain.com primarymtdomain.com sACCID.gridserver.com
+EOM
+  exit 1
+fi
+
+dir=$(vmin list-domains --domain ${domain} --multiline | grep "HTML directory:" | cut -d':' -f 2 | awk  '{ print $1 }')
+
+echo "==> Preparing to move ${domain} over to (mt)."
+
+echo "Domain to move: ${domain}"
+echo "Source directory: ${dir}"
+echo "Grid Server: ${gridserver}"
+
+cd ${dir}
+rsync --stats --progress -avz ${username}@${gridserver}:~/domains/${domain}/html/ .
